@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class MenuButtons : MonoBehaviour
+{
+    public void OnPlay(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    public void OnOptions(Canvas menuScreen)
+    {
+        menuScreen.enabled = false;
+    }
+
+    public void OnOptions2(Canvas optionsScreen)
+    {
+        optionsScreen.enabled = true;
+    }
+
+    public void OnQuit()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void OnBack(Canvas menuScreen)
+    {
+        menuScreen.enabled = true;
+    }
+
+    public void OnBack2(Canvas optionsScreen)
+    {
+        optionsScreen.enabled = false;
+    }
+}
