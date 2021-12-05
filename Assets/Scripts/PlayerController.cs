@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public GameObject gun;
     public GameObject grapplingHook;
     public TextMeshProUGUI coinCounter;
+    public Canvas pauseScreen;
 
     [Header("Values")]
     public float speed = 5f;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     // private variables
     private Vector2 move;
+    public bool isPaused;
 
     void Start()
     {
@@ -40,25 +42,30 @@ public class PlayerController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         SetXScale();
         coinCounter.SetText(totalCoins.ToString());
+
+        isPaused = false;
+        pauseScreen.enabled = false;
     }
 
     void Update()
     {
-        Move();
-        Jump();
-        HealthSystem();
-
-        if (grapplingHook.GetComponent<GrapplingHook>().isGrappling == false)
+        if (!isPaused)
         {
-            Shoot();
-        }
+            Move();
+            Jump();
+            HealthSystem();
+            Pause();
 
-        if (health <= 0)
-        {
-            GameOver();
-        }
+            if (grapplingHook.GetComponent<GrapplingHook>().isGrappling == false)
+            {
+                Shoot();
+            }
 
-        QuitGame();
+            if (health <= 0)
+            {
+                GameOver();
+            }
+        }
     }
 
     private void HealthSystem()
@@ -159,19 +166,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Pause()
+    {
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseScreen.enabled = true;
+            isPaused = true;
+        }
+    }
+
     private void SetXScale()
     {
         projectile.GetComponent<Projectile>().x = transform.localScale.x;
         gun.GetComponent<Gun>().x = transform.localScale.x;
         grapplingHook.GetComponent<GrapplingHook>().x = transform.localScale.x;
-    }
-
-    private void QuitGame()
-    {
-        if (Input.GetKey(KeyCode.P))
-        {
-            Application.Quit();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

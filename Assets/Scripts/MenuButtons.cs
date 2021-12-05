@@ -36,4 +36,19 @@ public class MenuButtons : MonoBehaviour
     {
         optionsScreen.enabled = false;
     }
+
+    public void OnResume(Canvas pauseScreen)
+    {
+        pauseScreen.enabled = false;
+    }
+
+    public void SetIsPaused(GameObject playerController)
+    {
+        playerController.GetComponent<PlayerController>().isPaused = false;
+    }
+
+    public void OnQuit2(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
 }

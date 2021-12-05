@@ -23,20 +23,23 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Aim();
+        if (!player.GetComponent<PlayerController>().isPaused)
+        {
+            Aim();
 
-        if (timeBtwShots <= 0)
-        {
-            Shoot();
-        }
-        else if (timeBtwShots > 0)
-        {
-            timeBtwShots -= Time.deltaTime;
-        }
+            if (timeBtwShots <= 0)
+            {
+                Shoot();
+            }
+            else if (timeBtwShots > 0)
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
 
-        if (enemyHealth <= 0f)
-        {
-            GameObject.Destroy(gameObject);
+            if (enemyHealth <= 0f)
+            {
+                GameObject.Destroy(gameObject);
+            }
         }
     }
 

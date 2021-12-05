@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public GameObject playerController;
     public float x = 0f;
 
     private void Start()
@@ -14,8 +15,11 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        //ShootDirection();
-        MouseAim();
+        if (!playerController.GetComponent<PlayerController>().isPaused)
+        {
+            //ShootDirection();
+            MouseAim();
+        }
     }
 
     private void MouseAim()
