@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
@@ -24,7 +21,6 @@ public class MenuButtons : MonoBehaviour
     public void OnQuit()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public void OnBack(Canvas menuScreen)
