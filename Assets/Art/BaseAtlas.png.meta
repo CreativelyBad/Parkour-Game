@@ -53,6 +53,9 @@ TextureImporter:
   - first:
       213: -6832572001287209674
     second: portal_4
+  - first:
+      213: -4498861261058532519
+    second: rope_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:

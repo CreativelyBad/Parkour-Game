@@ -354,7 +354,7 @@ LineRenderer:
     numCornerVertices: 1
     numCapVertices: 10
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -1073,7 +1073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -49844,6 +49844,7 @@ GameObject:
   - component: {fileID: 2002727579}
   - component: {fileID: 2002727578}
   - component: {fileID: 2002727581}
+  - component: {fileID: 2002727582}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -49964,7 +49965,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2002727580
 MonoBehaviour:
@@ -50022,6 +50023,28 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 3.5
   m_MaxDistanceOnly: 1
+--- !u!68 &2002727582
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002727575}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06, y: -0.5}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.25, y: 0}
+  - {x: 0.25, y: 0}
+  m_AdjacentStartPoint: {x: 0.69, y: 0}
+  m_AdjacentEndPoint: {x: 0.5, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &2043780835
 GameObject:
   m_ObjectHideFlags: 0
@@ -51089,10 +51112,10 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 90
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 0
 --- !u!114 &2114777111
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public BoxCollider2D boxCollider;
+    public CircleCollider2D circleCollider;
     public float projectileSpeed = 20f;
 
     private void Start()
