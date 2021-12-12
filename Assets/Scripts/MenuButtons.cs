@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class MenuButtons : MonoBehaviour
 {
+    // button functions to be called OnClick()
+
     public void OnPlay(string level)
     {
         SceneManager.LoadScene(level);
@@ -44,8 +46,8 @@ public class MenuButtons : MonoBehaviour
         playerController.GetComponent<PlayerController>().isPaused = false;
     }
 
-    public void OnQuit2(string level)
+    public void OnReturn(string menu)
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene(menu);
     }
 }

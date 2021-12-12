@@ -11,6 +11,7 @@ public class LineController : MonoBehaviour
 
     private void Update()
     {
+        // control line renderer component
         if (grapplingHook.GetComponent<GrapplingHook>().hasGrappled)
         {
             lineRenderer.enabled = true;

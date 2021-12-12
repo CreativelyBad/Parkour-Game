@@ -40,6 +40,7 @@ public class GrapplingHook : MonoBehaviour
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
 
+        // check if grappling hook is to far away
         if (distance > 10f)
         {
             distanceJoint.enabled = false;
@@ -93,6 +94,7 @@ public class GrapplingHook : MonoBehaviour
             IsGrappling();
         }
 
+        // pull to grapple
         if (Input.GetKeyDown(KeyCode.LeftControl) && distanceJoint.enabled == true)
         {
             hasGrappled = false;
@@ -104,10 +106,13 @@ public class GrapplingHook : MonoBehaviour
 
     private void IsGrappling()
     {
+        // check if grappling
         if (isGrappling)
         {
+            // set parent to fire point
             transform.SetParent(firePoint);
 
+            // set position for when grappling
             transform.localPosition = grapplingPosition;
             transform.localRotation = Quaternion.Euler(0, 0, grapplingRotation);
 
@@ -115,8 +120,10 @@ public class GrapplingHook : MonoBehaviour
         }
         else if (!isGrappling)
         {
+            // set parent to player
             transform.SetParent(player);
 
+            // set position for when not grappling
             transform.localPosition = notGrapplingPosition;
             transform.rotation = Quaternion.Euler(0, 0, notGrapplingRotation * x);
 
@@ -126,6 +133,7 @@ public class GrapplingHook : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // check if hook has hit ground
         if (collision.tag == "Ground" && hasGrappled == true)
         {
             rb.isKinematic = true;

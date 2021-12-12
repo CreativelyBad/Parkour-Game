@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
@@ -38,43 +39,57 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // get components needed
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        
+        // call SetXScale to set the direction player is facing
         SetXScale();
+
+        // set coin counter to 0
         coinCounter.SetText(totalCoins.ToString());
 
+        // set game to not paused on start
         isPaused = false;
         pauseScreen.enabled = false;
     }
 
     void Update()
     {
+        // check whether or not game is paused
         if (!isPaused)
         {
+            // basic gameplay functions
             Move();
             Jump();
             HealthSystem();
-            Pause();
 
+            // check whether player is grappling
+            // if not let player shoot
             if (grapplingHook.GetComponent<GrapplingHook>().isGrappling == false)
             {
                 Shoot();
             }
 
+            // chech if game is over
             if (health <= 0)
             {
-                GameOver();
+                GameOver("GameOverScreen");
             }
         }
+
+        Pause();
     }
 
     private void HealthSystem()
     {
+        // make sure health doesn't go above the number of hearts
         if (health > numOfHearts)
         {
             health = numOfHearts;
         }
 
+        // set which hearts appear
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < health)
@@ -97,9 +112,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    private void GameOver(string screen)
     {
-        Debug.Log("Game Over");
+        // load game over screen
+        SceneManager.LoadScene(screen);
+
+        // set cursor to be visible
+        UnityEngine.Cursor.visible = true;
     }
 
     private void Move()
@@ -125,10 +144,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        // jump
+        // check if grounded and if jump key is pressed
         if (IsGrounded() && (Input.GetKeyDown(KeyCode.Space)))
         {
-                rb.velocity = new Vector2(0, jumpVelocity);
+            rb.velocity = new Vector2(0, jumpVelocity);
         }
     }
 
@@ -137,9 +156,11 @@ public class PlayerController : MonoBehaviour
         float extraHeightTest = 0.1f;
         Color rayColor;
 
+        // cast ray to find if player is on ground
         RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, 
             boxCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
 
+        // set colour based on if player is grounded or not
         if (raycastHit.collider != null)
         {
             rayColor = Color.green;
@@ -149,6 +170,7 @@ public class PlayerController : MonoBehaviour
             rayColor = Color.red;
         }
 
+        // draw visible ray
         Debug.DrawRay(boxCollider.bounds.center, Vector2.down * (boxCollider.bounds.extents.y + extraHeightTest));
 
         return raycastHit.collider != null;
@@ -156,12 +178,16 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            // set projectile position on spawn
             projectile.transform.position = new Vector3(firePoint.transform.position.x, 
                 firePoint.transform.position.y, firePoint.transform.position.z);
+            
+            // set projectile rotation
             projectile.transform.rotation = gun.transform.rotation;
 
+            // spawn in projectile
             Instantiate(projectile);
         }
     }
@@ -170,13 +196,24 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseScreen.enabled = true;
-            isPaused = true;
+            if (!isPaused)
+            {
+                // turn on pause screen and set paused bool = true
+                pauseScreen.enabled = true;
+                isPaused = true;
+            }
+            else
+            {
+                // turn off pause screen and set paused bool = false
+                pauseScreen.enabled = false;
+                isPaused = false;
+            }
         }
     }
 
     private void SetXScale()
     {
+        // set x variable in other objects to the players current x scale
         projectile.GetComponent<Projectile>().x = transform.localScale.x;
         gun.GetComponent<Gun>().x = transform.localScale.x;
         grapplingHook.GetComponent<GrapplingHook>().x = transform.localScale.x;

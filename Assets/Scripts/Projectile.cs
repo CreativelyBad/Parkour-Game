@@ -17,13 +17,16 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        // set velocity
         rb.velocity = rb.GetRelativeVector(Vector2.right * projectileSpeed * x);
 
+        // destroy object after 1 second
         GameObject.Destroy(gameObject, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // destroy object if it hits the enemy or ground
         if (collision.tag == "Ground" || collision.tag == "Enemy")
         {
             GameObject.Destroy(gameObject);

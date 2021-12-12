@@ -20,6 +20,7 @@ public class Cursor : MonoBehaviour
     {
         CursorPosition();
         
+        // check whether or not cursor or sprite should be on or off
         if (playerController.GetComponent<PlayerController>().isPaused == true)
         {
             UnityEngine.Cursor.visible = true;
@@ -35,6 +36,7 @@ public class Cursor : MonoBehaviour
 
     private void CursorPosition()
     {
+        // set aiming cursor position to mouse position
         Vector2 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mouse;
     }
