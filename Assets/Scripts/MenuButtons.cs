@@ -6,17 +6,17 @@ public class MenuButtons : MonoBehaviour
 {
     // button functions to be called OnClick()
 
-    public void OnPlay(string level)
+    public void OnPlay(Canvas levelSelect)
     {
-        SceneManager.LoadScene(level);
+        levelSelect.enabled = true;
     }
 
-    public void OnOptions(Canvas menuScreen)
+    public void MenuScreenDisabled(Canvas menuScreen)
     {
         menuScreen.enabled = false;
     }
 
-    public void OnOptions2(Canvas optionsScreen)
+    public void OnOptions(Canvas optionsScreen)
     {
         optionsScreen.enabled = true;
     }
@@ -26,12 +26,12 @@ public class MenuButtons : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnBack(Canvas menuScreen)
+    public void MenuScreenEnabled(Canvas menuScreen)
     {
         menuScreen.enabled = true;
     }
 
-    public void OnBack2(Canvas optionsScreen)
+    public void OnBack(Canvas optionsScreen)
     {
         optionsScreen.enabled = false;
     }
@@ -49,5 +49,10 @@ public class MenuButtons : MonoBehaviour
     public void OnReturn(string menu)
     {
         SceneManager.LoadScene(menu);
+    }
+
+    public void OnLevelSelect(string level)
+    {
+        SceneManager.LoadScene(level);
     }
 }

@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     // private variables
     private Vector2 move;
     public bool isPaused;
+    private bool isComplete;
 
     void Start()
     {
@@ -52,6 +53,8 @@ public class PlayerController : MonoBehaviour
         // set game to not paused on start
         isPaused = false;
         pauseScreen.enabled = false;
+
+        isComplete = false;
     }
 
     void Update()
@@ -70,15 +73,20 @@ public class PlayerController : MonoBehaviour
             {
                 Shoot();
             }
-
-            // chech if game is over
-            if (health <= 0)
-            {
-                GameOver("GameOverScreen");
-            }
         }
 
         Pause();
+
+        // chech if game is over
+        if (health <= 0)
+        {
+            GameOver("GameOverScreen");
+        }
+
+        if (isComplete)
+        {
+            LevelComplete("MenuScreen");
+        }
     }
 
     private void HealthSystem()
@@ -219,6 +227,15 @@ public class PlayerController : MonoBehaviour
         grapplingHook.GetComponent<GrapplingHook>().x = transform.localScale.x;
     }
 
+    private void LevelComplete(string screen)
+    {
+        // load game over screen
+        SceneManager.LoadScene(screen);
+
+        // set cursor to be visible
+        UnityEngine.Cursor.visible = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //lose health when shot
@@ -240,6 +257,18 @@ public class PlayerController : MonoBehaviour
             totalCoins += 5;
             coinCounter.SetText(totalCoins.ToString());
             Destroy(collision.gameObject);
+        }
+
+        // kill when enter death barrier
+        if (collision.tag == "DeathBarrier")
+        {
+            health = 0;
+        }
+
+        // complete level
+        if (collision.tag == "Portal")
+        {
+            isComplete = true;
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
+    public bool canGrapple = true;
     public bool isGrappling = false;
     public bool hasGrappled = false;
     public Transform player;
@@ -32,8 +33,18 @@ public class GrapplingHook : MonoBehaviour
 
     private void Update()
     {
-        GrapplingInput();
-        CheckDistance();
+        if (canGrapple)
+        {
+            GrapplingInput();
+            CheckDistance();
+            GetComponent<SpriteRenderer>().enabled = true;
+            boxCollider.enabled = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            boxCollider.enabled = false;
+        }
     }
 
     private void CheckDistance()

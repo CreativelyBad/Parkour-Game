@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Heart
   - Coin
+  - DeathBarrier
+  - Portal
   layers:
   - Default
   - TransparentFX

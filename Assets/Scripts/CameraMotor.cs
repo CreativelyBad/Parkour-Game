@@ -36,7 +36,7 @@ public class CameraMotor : MonoBehaviour
         // make sure camera doesn't move past the bottom of the level
         if (transform.position.y < 0)
         {
-            CheckPosition();
+            //CheckPosition();
         }
     }
     
@@ -53,13 +53,19 @@ public class CameraMotor : MonoBehaviour
         // make sure camera doesn't move past the back of the level
         if (transform.position.x < 0)
         {
-            CheckPosition();
+            //CheckPosition();
         }
     }
 
     private void CheckPosition()
     {
-        // set camera position to 0 on the y
-        transform.position = new Vector3(0, 0, -10);
+        if (followY)
+        {
+            transform.position = new Vector3(transform.position.x, 0, -10);
+        }
+        else
+        {
+            transform.position = new Vector3(0, transform.position.y, -10);
+        }
     }
 }
