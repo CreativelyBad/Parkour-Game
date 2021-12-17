@@ -12469,6 +12469,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 6030781500186737340, guid: cc4ce8dc46f0a6f468ed57c83f44d356, type: 3}
+      propertyPath: canGrapple
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6030781500186737341, guid: cc4ce8dc46f0a6f468ed57c83f44d356, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
