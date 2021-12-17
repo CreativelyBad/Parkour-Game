@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
 
     private void LevelComplete(string screen)
     {
-        // load game over screen
+        // load menu screen
         SceneManager.LoadScene(screen);
 
         // set cursor to be visible
