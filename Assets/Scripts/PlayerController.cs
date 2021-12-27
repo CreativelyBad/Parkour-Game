@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         if (isComplete)
         {
-            LevelComplete("MenuScreen");
+            LevelComplete();
         }
     }
 
@@ -227,10 +227,18 @@ public class PlayerController : MonoBehaviour
         grapplingHook.GetComponent<GrapplingHook>().x = transform.localScale.x;
     }
 
-    private void LevelComplete(string screen)
+    private void LevelComplete()
     {
-        // load menu screen
-        SceneManager.LoadScene(screen);
+        // load next level
+        if (SceneManager.GetActiveScene().buildIndex + 1 < 5)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            UnityEngine.Cursor.visible = true;
+            SceneManager.LoadScene("MenuScreen");
+        }
 
         // set cursor to be visible
         UnityEngine.Cursor.visible = true;
