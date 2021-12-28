@@ -15,13 +15,10 @@ public class SettingsMenu : MonoBehaviour
 
     Resolution[] resolutions;
 
-    private void Awake()
-    {
-        ResolutionOnStart();
-    }
-
     private void Start()
     {
+        ResolutionOnStart();
+
         graphicsDropdown.value = graphicsIndex; 
         SetQuality(graphicsIndex);
 
