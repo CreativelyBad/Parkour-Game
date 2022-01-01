@@ -17,15 +17,18 @@ public class Enemy : MonoBehaviour
     public GameObject gun;
     public GameObject player;
 
+    private bool isInFrame;
+
     private void Start()
     {
         timeBtwShots = startTimeBtwShots;
         enemyHealth = maxEnemyHealth;
+        isInFrame = false;
     }
 
     private void Update()
     {
-        if (!player.GetComponent<PlayerController>().isPaused)
+        if (!player.GetComponent<PlayerController>().isPaused && isInFrame)
         {
             Aim();
 
@@ -84,6 +87,22 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "PlayerProjectile")
         {
             enemyHealth--;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "MainCamera")
+        {
+            isInFrame = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "MainCamera")
+        {
+            isInFrame = true;
         }
     }
 }

@@ -124,9 +124,6 @@ public class PlayerController : MonoBehaviour
     {
         // load game over screen
         SceneManager.LoadScene(screen);
-
-        // set cursor to be visible
-        UnityEngine.Cursor.visible = true;
     }
 
     private void Move()
@@ -230,18 +227,14 @@ public class PlayerController : MonoBehaviour
     private void LevelComplete()
     {
         // load next level
-        if (SceneManager.GetActiveScene().buildIndex + 1 < 5)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < 6)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
-            UnityEngine.Cursor.visible = true;
             SceneManager.LoadScene("MenuScreen");
         }
-
-        // set cursor to be visible
-        UnityEngine.Cursor.visible = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -267,10 +260,11 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        // kill when enter death barrier
+        // damage when enter death barrier
         if (collision.tag == "DeathBarrier")
         {
-            health = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //health--;
         }
 
         // complete level
