@@ -28,18 +28,21 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!player.GetComponent<PlayerController>().isPaused && isInFrame)
+        if (!player.GetComponent<PlayerController>().isPaused)
         {
             Aim();
 
-            // check whether to shoot
-            if (timeBtwShots <= 0)
+            if (isInFrame)
             {
-                Shoot();
-            }
-            else if (timeBtwShots > 0)
-            {
-                timeBtwShots -= Time.deltaTime;
+                // check whether to shoot
+                if (timeBtwShots <= 0)
+                {
+                    Shoot();
+                }
+                else if (timeBtwShots > 0)
+                {
+                    timeBtwShots -= Time.deltaTime;
+                }
             }
 
             // check if enemy is dead
