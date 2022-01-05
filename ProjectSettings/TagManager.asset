@@ -13,6 +13,7 @@ TagManager:
   - Coin
   - DeathBarrier
   - Portal
+  - GroundChecker
   layers:
   - Default
   - TransparentFX

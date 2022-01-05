@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject grapplingHook;
     public TextMeshProUGUI coinCounter;
     public Canvas pauseScreen;
+    public GameObject groundCheck;
 
     [Header("Values")]
     public float speed = 5f;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] private LayerMask platformLayerMask;
+    public bool isPaused;
 
     [Header("Health System")]
     public int health;
@@ -35,8 +37,8 @@ public class PlayerController : MonoBehaviour
 
     // private variables
     private Vector2 move;
-    public bool isPaused;
     private bool isComplete;
+    private bool isGrounded;
 
     void Start()
     {
@@ -150,35 +152,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // check if grounded and if jump key is pressed
-        if (IsGrounded() && (Input.GetKeyDown(KeyCode.Space)))
+        if (isGrounded && (Input.GetKeyDown(KeyCode.Space)))
         {
             rb.velocity = new Vector2(0, jumpVelocity);
         }
-    }
-
-    private bool IsGrounded()
-    {
-        float extraHeightTest = 0.1f;
-        Color rayColor;
-
-        // cast ray to find if player is on ground
-        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, 
-            boxCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
-
-        // set colour based on if player is grounded or not
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-
-        // draw visible ray
-        Debug.DrawRay(boxCollider.bounds.center, Vector2.down * (boxCollider.bounds.extents.y + extraHeightTest));
-
-        return raycastHit.collider != null;
     }
 
     private void Shoot()
@@ -273,4 +250,45 @@ public class PlayerController : MonoBehaviour
             isComplete = true;
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Platform" || collision.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Platform" || collision.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+
+    //private bool IsGrounded()
+    //{
+    //    float extraHeightTest = 0.1f;
+    //    Color rayColor;
+
+    //    // cast ray to find if player is on ground
+    //    RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, 
+    //        boxCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
+
+    //    // set colour based on if player is grounded or not
+    //    if (raycastHit.collider != null)
+    //    {
+    //        rayColor = Color.green;
+    //    }
+    //    else
+    //    {
+    //        rayColor = Color.red;
+    //    }
+
+    //    // draw visible ray
+    //    Debug.DrawRay(boxCollider.bounds.center, Vector2.down * (boxCollider.bounds.extents.y + extraHeightTest));
+
+    //    return raycastHit.collider != null;
+    //}
 }

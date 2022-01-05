@@ -9,16 +9,20 @@ public class EnemyProjectile : MonoBehaviour
     public CircleCollider2D circleCollider;
     public float projectileSpeed = 20f;
     private GameObject player;
+    public GameObject groundCheck;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        groundCheck = GameObject.FindGameObjectWithTag("GroundChecker");
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         Physics2D.IgnoreCollision(player.GetComponent<EdgeCollider2D>(), circleCollider);
+        Physics2D.IgnoreCollision(groundCheck.GetComponent<BoxCollider2D>(), circleCollider);
+
 
         // set velocity
         rb.velocity = rb.GetRelativeVector(Vector2.right * projectileSpeed);
