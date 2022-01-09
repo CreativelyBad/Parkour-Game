@@ -17,7 +17,7 @@ public class VerticalPlatform : MonoBehaviour
         // reset wait time and rotaional offset when left shift is let go
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            waitTime = 0.5f;
+            waitTime = 0.25f;
             effector.rotationalOffset = 0f;
         }
 

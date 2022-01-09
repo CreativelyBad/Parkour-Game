@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickupCollisionIgnore : MonoBehaviour
 {
     public GameObject player;
-    public GameObject groundCheck;
+    private GameObject groundCheck;
 
     private void Start()
     {

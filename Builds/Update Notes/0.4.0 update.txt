@@ -1,0 +1,18 @@
+Version 0.4.0 Update
+
+Bug Fixes;
+- On level 3 you can no longer collide with the stalctites and stalagmites
+- When you shoot straight backwards the projectiles no longer get destroyed
+- Player no longer gets caught on walls when they collide with them
+
+Changes & Additions:
+- New camera that allows for more free movement
+- Level 6
+- App Icon
+- Shorter wait time for shifting through platforms
+- Walking animation
+- Level adjustments
+- Jump height is reduced
+- Added in double jump
+- Areas that you die when falling into have a warning sign
+- Projectile glow is a little brighter

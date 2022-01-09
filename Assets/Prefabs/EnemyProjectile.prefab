@@ -47,7 +47,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.8
   m_Color: {r: 1, g: 0.14915776, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -99,8 +99,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3749047157007859147}
-  m_LocalRotation: {x: -0, y: -0, z: 0.99995774, w: 0.00919432}
-  m_LocalPosition: {x: 44.912537, y: -9.58968, z: 2.9643004}
+  m_LocalRotation: {x: -0, y: -0, z: -0.717461, w: 0.69659877}
+  m_LocalPosition: {x: 33.7459, y: -12.963559, z: 2.9643004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8080579503455773898}
@@ -210,4 +210,3 @@ MonoBehaviour:
   rb: {fileID: 2464037759417983722}
   circleCollider: {fileID: 8731928688224963348}
   projectileSpeed: 30
-  groundCheck: {fileID: 0}

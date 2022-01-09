@@ -9,7 +9,7 @@ public class EnemyProjectile : MonoBehaviour
     public CircleCollider2D circleCollider;
     public float projectileSpeed = 20f;
     private GameObject player;
-    public GameObject groundCheck;
+    private GameObject groundCheck;
 
     private void Start()
     {

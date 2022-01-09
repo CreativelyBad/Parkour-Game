@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI coinCounter;
     public Canvas pauseScreen;
     public GameObject groundCheck;
+    public Animator animator;
 
     [Header("Values")]
     public float speed = 5f;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 move;
     private bool isComplete;
     private bool isGrounded;
+    private float doubleJumpAmount;
 
     void Start()
     {
@@ -57,6 +59,8 @@ public class PlayerController : MonoBehaviour
         pauseScreen.enabled = false;
 
         isComplete = false;
+
+        doubleJumpAmount = 2;
     }
 
     void Update()
@@ -147,14 +151,33 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
             SetXScale();
         }
+
+        if (x == 0 || doubleJumpAmount != 2)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
+        }
     }
 
     private void Jump()
     {
+        if (doubleJumpAmount == 0)
+        {
+            isGrounded = false;
+        }
+        else
+        {
+            isGrounded = true;
+        }
+
         // check if grounded and if jump key is pressed
         if (isGrounded && (Input.GetKeyDown(KeyCode.Space)))
         {
             rb.velocity = new Vector2(0, jumpVelocity);
+            doubleJumpAmount--;
         }
     }
 
@@ -183,6 +206,7 @@ public class PlayerController : MonoBehaviour
                 // turn on pause screen and set paused bool = true
                 pauseScreen.enabled = true;
                 isPaused = true;
+                animator.SetBool("isMoving", false);
             }
             else
             {
@@ -204,7 +228,7 @@ public class PlayerController : MonoBehaviour
     private void LevelComplete()
     {
         // load next level
-        if (SceneManager.GetActiveScene().buildIndex + 1 < 7)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < 8)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -249,23 +273,30 @@ public class PlayerController : MonoBehaviour
         {
             isComplete = true;
         }
+
+        // pickup grappling hook
+        if (collision.tag == "GrapplingHook")
+        {
+            Destroy(collision.gameObject);
+            grapplingHook.GetComponent<GrapplingHook>().canGrapple = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Platform" || collision.tag == "Ground")
         {
-            isGrounded = true;
+            doubleJumpAmount = 2;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Platform" || collision.tag == "Ground")
-        {
-            isGrounded = false;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Platform" || collision.tag == "Ground")
+    //    {
+    //        doubleJumpAmount--;
+    //    }
+    //}
 
     //private bool IsGrounded()
     //{
