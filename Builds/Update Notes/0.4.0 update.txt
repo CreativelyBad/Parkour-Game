@@ -16,3 +16,5 @@ Changes & Additions:
 - Added in double jump
 - Areas that you die when falling into have a warning sign
 - Projectile glow is a little brighter
+- Removed graphics option
+- Updated options menu visuals

@@ -55,9 +55,4 @@ public class MenuButtons : MonoBehaviour
     {
         SceneManager.LoadScene(level);
     }
-
-    public void OnApply(GameObject preferencesManager)
-    {
-        preferencesManager.GetComponent<PreferencesManager>().SavePrefs();
-    }
 }

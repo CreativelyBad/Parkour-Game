@@ -7,23 +7,14 @@ using TMPro;
 public class SettingsMenu : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropdown;
-    public TMP_Dropdown graphicsDropdown;
     public Toggle isFullscreenToggle;
-    public int graphicsIndex;
-    public int fullscreen;
-    //public int resIndex;
 
     Resolution[] resolutions;
 
     private void Start()
     {
         ResolutionOnStart();
-
-        graphicsDropdown.value = graphicsIndex; 
-        SetQuality(graphicsIndex);
-
-        isFullscreenToggle.isOn = IntToBool(fullscreen);
-        SetFullscreen(IntToBool(fullscreen));
+        SetFullscreen(true);
     }
 
     private void ResolutionOnStart()
@@ -37,7 +28,9 @@ public class SettingsMenu : MonoBehaviour
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
+            string option = resolutions[i].width + "x" + resolutions[i].height + " " +
+                resolutions[i].refreshRate + "Hz";
+
             options.Add(option);
 
             if (resolutions[i].width == Screen.width &&
@@ -58,16 +51,9 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-        graphicsIndex = qualityIndex;
-    }
-
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
-        fullscreen = BoolToInt(isFullscreen);
     }
 
     bool IntToBool(int value)
