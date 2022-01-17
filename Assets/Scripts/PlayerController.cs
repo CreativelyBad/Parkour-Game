@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public Canvas pauseScreen;
     public GameObject groundCheck;
     public Animator animator;
+    public GameObject eHolder;
 
     [Header("Values")]
     public float speed = 5f;
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
         isComplete = false;
 
         doubleJumpAmount = 2;
+
+        eHolder.SetActive(false);
     }
 
     void Update()
@@ -89,9 +92,21 @@ public class PlayerController : MonoBehaviour
             GameOver("GameOverScreen");
         }
 
-        if (isComplete)
+        if (isComplete && Input.GetKeyDown(KeyCode.E))
         {
             LevelComplete();
+        }
+
+        if (isComplete)
+        {
+            if (transform.localScale.x == 1)
+            {
+                eHolder.transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                eHolder.transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
 
@@ -272,6 +287,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Portal")
         {
             isComplete = true;
+            eHolder.SetActive(true);
         }
 
         // pickup grappling hook
@@ -287,6 +303,15 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Platform" || collision.tag == "Ground")
         {
             doubleJumpAmount = 2;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Portal")
+        {
+            isComplete = false;
+            eHolder.SetActive(false);
         }
     }
 

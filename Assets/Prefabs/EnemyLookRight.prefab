@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075c783ed82b1a2498bae88283e8c275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBtwShots: 1
+  startTimeBtwShots: 0.4
   enemyHealth: 0
   maxEnemyHealth: 1
   projectile: {fileID: 3749047157007859147, guid: 89a6713ed34766243b24b360bc32f49f, type: 3}

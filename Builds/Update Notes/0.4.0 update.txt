@@ -7,7 +7,7 @@ Bug Fixes;
 
 Changes & Additions:
 - New camera that allows for more free movement
-- Level 6
+- Level 6 added
 - App Icon
 - Shorter wait time for shifting through platforms
 - Walking animation
@@ -18,3 +18,5 @@ Changes & Additions:
 - Projectile glow is a little brighter
 - Removed graphics option
 - Updated options menu visuals
+- Now have to press E to go through portals
+- Enemy firing speed is now 0.4 seconds between each shot
