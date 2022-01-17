@@ -1,7 +1,7 @@
 Version 0.4.0 Update
 
 Bug Fixes;
-- On level 3 you can no longer collide with the stalctites and stalagmites
+- On level 3 you can no longer collide with the stalactites and stalagmites
 - When you shoot straight backwards the projectiles no longer get destroyed
 - Player no longer gets caught on walls when they collide with them
 
