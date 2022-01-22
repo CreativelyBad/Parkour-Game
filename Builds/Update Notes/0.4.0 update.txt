@@ -20,3 +20,4 @@ Changes & Additions:
 - Updated options menu visuals
 - Now have to press E to go through portals
 - Enemy firing speed is now 0.4 seconds between each shot
+- Level transition

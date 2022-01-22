@@ -453,10 +453,11 @@ MonoBehaviour:
   gun: {fileID: 6030781498788500956}
   grapplingHook: {fileID: 6030781500186737343}
   coinCounter: {fileID: 0}
-  pauseScreen: {fileID: 0}
+  pauseScreen: {fileID: 2059572359153350864, guid: 8dec1415ccedaaa4183eabb82824e83b, type: 3}
   groundCheck: {fileID: 2709599463381030408}
   animator: {fileID: 3240588202383252225}
   eHolder: {fileID: 1564377122324907485}
+  sceneTransitionAnim: {fileID: 4375871349399659230, guid: 84fcc0f18998738429bc1861dc7344b1, type: 3}
   speed: 5
   jumpVelocity: 10
   totalCoins: 0

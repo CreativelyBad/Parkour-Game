@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject groundCheck;
     public Animator animator;
     public GameObject eHolder;
+    public Animator sceneTransitionAnim;
 
     [Header("Values")]
     public float speed = 5f;
@@ -245,12 +246,23 @@ public class PlayerController : MonoBehaviour
         // load next level
         if (SceneManager.GetActiveScene().buildIndex + 1 < 8)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
             SceneManager.LoadScene("MenuScreen");
         }
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        sceneTransitionAnim.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(levelIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -276,7 +288,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        // damage when enter death barrier
+        // restart
         if (collision.tag == "DeathBarrier")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
