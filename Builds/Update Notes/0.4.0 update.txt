@@ -7,7 +7,7 @@ Bug Fixes;
 
 Changes & Additions:
 - New camera that allows for more free movement
-- Level 6 added
+- Level 6 and 7 added
 - App Icon
 - Shorter wait time for shifting through platforms
 - Walking animation
@@ -21,3 +21,6 @@ Changes & Additions:
 - Now have to press E to go through portals
 - Enemy firing speed is now 0.4 seconds between each shot
 - Level transition
+- Some SFX added
+- SFX slider and master slider now work
+- Volume preferences save (fullscreen save is buggy)

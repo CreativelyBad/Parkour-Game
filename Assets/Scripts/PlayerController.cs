@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject eHolder;
     public Animator sceneTransitionAnim;
+    public SFXManager sfxManager;
 
     [Header("Values")]
     public float speed = 5f;
@@ -83,6 +84,12 @@ public class PlayerController : MonoBehaviour
             {
                 Shoot();
             }
+
+            if (isComplete && Input.GetKeyDown(KeyCode.E))
+            {
+                LevelComplete();
+                sfxManager.audioSource.PlayOneShot(sfxManager.portalCip);
+            }
         }
 
         Pause();
@@ -91,11 +98,6 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             GameOver("GameOverScreen");
-        }
-
-        if (isComplete && Input.GetKeyDown(KeyCode.E))
-        {
-            LevelComplete();
         }
 
         if (isComplete)
@@ -194,6 +196,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, jumpVelocity);
             doubleJumpAmount--;
+            sfxManager.audioSource.PlayOneShot(sfxManager.jumpClip);
         }
     }
 
@@ -210,6 +213,8 @@ public class PlayerController : MonoBehaviour
 
             // spawn in projectile
             Instantiate(projectile);
+
+            sfxManager.audioSource.PlayOneShot(sfxManager.shootClip);
         }
     }
 
@@ -271,12 +276,14 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "EnemyProjectile")
         {
             health--;
+            sfxManager.audioSource.PlayOneShot(sfxManager.damageClip);
         }
         
         // heart pickup
         if (collision.tag == "Heart" && health < numOfHearts)
         {
             health++;
+            sfxManager.audioSource.PlayOneShot(sfxManager.heartPickupClip);
             Destroy(collision.gameObject);
         }
         
@@ -285,6 +292,7 @@ public class PlayerController : MonoBehaviour
         {
             totalCoins += 5;
             coinCounter.SetText(totalCoins.ToString());
+            sfxManager.audioSource.PlayOneShot(sfxManager.coinPickupClip);
             Destroy(collision.gameObject);
         }
 
@@ -292,6 +300,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "DeathBarrier")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
             //health--;
         }
 

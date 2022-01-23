@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     public GameObject firePoint;
     public GameObject gun;
     public GameObject player;
+    public AudioSource audioSource;
+    public AudioClip shootClip;
 
     private bool isInFrame;
 
@@ -82,6 +84,8 @@ public class Enemy : MonoBehaviour
 
         // reset time between shots
         timeBtwShots = startTimeBtwShots;
+
+        audioSource.PlayOneShot(shootClip);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
