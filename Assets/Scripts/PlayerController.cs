@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
     private void LevelComplete()
     {
         // load next level
-        if (SceneManager.GetActiveScene().buildIndex + 1 < 8)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < 9)
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
 
