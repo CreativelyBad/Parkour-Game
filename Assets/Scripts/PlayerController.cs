@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour
         // chech if game is over
         if (health <= 0)
         {
-            GameOver("GameOverScreen");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
+
+            //GameOver("GameOverScreen");
         }
 
         if (isComplete)
@@ -249,7 +252,7 @@ public class PlayerController : MonoBehaviour
     private void LevelComplete()
     {
         // load next level
-        if (SceneManager.GetActiveScene().buildIndex + 1 < 9)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < 10)
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
 
