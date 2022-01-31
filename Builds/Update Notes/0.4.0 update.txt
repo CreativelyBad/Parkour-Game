@@ -21,6 +21,6 @@ Changes & Additions:
 - Now have to press E to go through portals
 - Enemy firing speed is now 1 second between each shot
 - Level transition
-- Some SFX added (walking sfx to come)
+- Some SFX added
 - SFX slider and master slider now work
 - Volume and fullscreen preferences save
