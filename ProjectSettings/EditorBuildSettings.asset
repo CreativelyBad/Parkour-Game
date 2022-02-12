@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level10.unity
     guid: 361422e5e662d3142bfe5adc6f737128
+  - enabled: 1
+    path: Assets/Scenes/GameCompletedScreen.unity
+    guid: 6c80b852067e6f7479b770549a972139
   m_configObjects: {}

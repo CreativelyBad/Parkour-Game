@@ -1,0 +1,10 @@
+Version 0.4.1 Update
+
+Changes & Additions:
+- Levels 9 and 10 added
+- Coin sprite changed
+- Temporary game completed screen
+- Checkpoints
+- Total coins save
+- Total coins displayed on menu screen
+- Levels are now locked until you unlock them by playing

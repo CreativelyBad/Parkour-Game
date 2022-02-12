@@ -9,7 +9,7 @@ Changes & Additions:
 - New camera that allows for more free movement
 - Levels 6, 7, and 8 added
 - App Icon
-- Shorter wait time for shifting through platforms
+- Shorter wait time for shifting through platforms 
 - Walking animation
 - Level adjustments
 - Jump height is reduced

@@ -125,6 +125,18 @@ TextureImporter:
   - first:
       213: 3461232999969394712
     second: slider_0
+  - first:
+      213: -2126833929987501079
+    second: checkpoint_0
+  - first:
+      213: 4462362872404385031
+    second: checkpointOn_0
+  - first:
+      213: -5651431950583531425
+    second: checkpointOff_0
+  - first:
+      213: -551945108824692797
+    second: lock_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1082,6 +1094,90 @@ TextureImporter:
       bones: []
       spriteID: 81019083315c80030800000000000000
       internalID: 3461232999969394712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: checkpoint_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 176
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3d8d22fc7fb72e0800000000000000
+      internalID: -2126833929987501079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: checkpointOn_0
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d1e8cc36f7ded30800000000000000
+      internalID: 4462362872404385031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: checkpointOff_0
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 148
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58fc2165941291b0800000000000000
+      internalID: -5651431950583531425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lock_0
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c76dfc09d81758f0800000000000000
+      internalID: -551945108824692797
       vertices: []
       indices: 
       edges: []

@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Health System")]
     public int health;
+    public int maxHealth;
     public int numOfHearts;
     public Image[] hearts;
     public Sprite fullHeart;
@@ -44,6 +45,10 @@ public class PlayerController : MonoBehaviour
     private bool isComplete;
     private bool isGrounded;
     private float doubleJumpAmount;
+
+    // checkpoints
+    private bool checkpointActviated;
+    private Vector3 checkpointLocation;
 
     void Start()
     {
@@ -66,6 +71,10 @@ public class PlayerController : MonoBehaviour
         doubleJumpAmount = 2;
 
         eHolder.SetActive(false);
+
+        // checkpoints
+        checkpointActviated = false;
+        checkpointLocation = Vector3.zero;
     }
 
     void Update()
@@ -87,6 +96,10 @@ public class PlayerController : MonoBehaviour
 
             if (isComplete && Input.GetKeyDown(KeyCode.E))
             {
+                int globalCoinTotal = PlayerPrefs.GetInt("CoinTotal");
+                PlayerPrefs.SetInt("CoinTotal", globalCoinTotal += (int)totalCoins);
+                PlayerPrefs.Save();
+
                 LevelComplete();
                 sfxManager.audioSource.PlayOneShot(sfxManager.portalCip);
             }
@@ -97,8 +110,10 @@ public class PlayerController : MonoBehaviour
         // chech if game is over
         if (health <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
+            Die();
+
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
 
             //GameOver("GameOverScreen");
         }
@@ -147,10 +162,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void GameOver(string screen)
+    private void Die()
     {
-        // load game over screen
-        SceneManager.LoadScene(screen);
+        if (checkpointActviated)
+        {
+            transform.position = checkpointLocation;
+            health = maxHealth;
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        //sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
     }
 
     private void Move()
@@ -260,7 +284,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MenuScreen");
+            StartCoroutine(LoadLevel(12));
         }
     }
 
@@ -302,8 +326,10 @@ public class PlayerController : MonoBehaviour
         // restart
         if (collision.tag == "DeathBarrier")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
+            Die();
+
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //sfxManager.audioSource.PlayOneShot(sfxManager.deathClip);
             //health--;
         }
 
@@ -319,6 +345,18 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             grapplingHook.GetComponent<GrapplingHook>().canGrapple = true;
+        }
+
+        // checkpoint
+        if (collision.tag == "Checkpoint")
+        {
+            if (checkpointLocation == collision.transform.position)
+            {
+                return;
+            }
+
+            checkpointActviated = true;
+            checkpointLocation = collision.transform.position;
         }
     }
 

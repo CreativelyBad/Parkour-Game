@@ -17,6 +17,7 @@ TagManager:
   - GrapplingHook
   - SettingZone
   - NoInteract
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
