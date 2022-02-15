@@ -62,4 +62,22 @@ public class MenuButtons : MonoBehaviour
         audioSource.PlayOneShot(selectClip);
         SceneManager.LoadScene(level);
     }
+
+    public void OnReset(GameObject resetCanvas)
+    {
+        resetCanvas.SetActive(true);
+    }
+
+    public void OnConfirmReset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("LevelsUnlocked", 1);
+        PlayerPrefs.SetInt("CoinTotal", 0);
+        PlayerPrefs.Save();
+    }
+
+    public void OnDenyReset(GameObject resetCanvas)
+    {
+        resetCanvas.SetActive(false);
+    }
 }

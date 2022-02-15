@@ -1,0 +1,6 @@
+Version 0.4.2 Update
+
+Changes & Additions:
+- Reset button appears when all 10 levels have been completed
+- In game timer for speed running
+- Time spent in game is shown in menu and on completion screen

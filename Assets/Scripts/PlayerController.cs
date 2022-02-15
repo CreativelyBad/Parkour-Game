@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
         // checkpoints
         checkpointActviated = false;
         checkpointLocation = Vector3.zero;
+
+        TimerController.instance.BeginTimer();
     }
 
     void Update()
@@ -102,6 +104,9 @@ public class PlayerController : MonoBehaviour
 
                 LevelComplete();
                 sfxManager.audioSource.PlayOneShot(sfxManager.portalCip);
+
+                TimerController.instance.EndTimer();
+                PlayerPrefs.SetFloat("GameTime", TimerController.instance.elapsedTime);
             }
         }
 
@@ -251,16 +256,22 @@ public class PlayerController : MonoBehaviour
         {
             if (!isPaused)
             {
+                // PAUSE GAME
                 // turn on pause screen and set paused bool = true
                 pauseScreen.enabled = true;
                 isPaused = true;
                 animator.SetBool("isMoving", false);
+
+                TimerController.instance.EndTimer();
             }
             else
             {
+                // UNPAUSE GAME
                 // turn off pause screen and set paused bool = false
                 pauseScreen.enabled = false;
                 isPaused = false;
+
+                TimerController.instance.BeginTimer();
             }
         }
     }

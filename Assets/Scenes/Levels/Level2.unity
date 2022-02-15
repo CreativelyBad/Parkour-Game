@@ -26669,6 +26669,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &467203207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8916016160540096948, guid: 0ba5e08c8dfe77348b04ea8cfafc9c1e, type: 3}
+  m_PrefabInstance: {fileID: 467203205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &474352567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39419,6 +39430,10 @@ PrefabInstance:
       propertyPath: m_Distance
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6030781498855306091, guid: cc4ce8dc46f0a6f468ed57c83f44d356, type: 3}
+      propertyPath: timerUI
+      value: 
+      objectReference: {fileID: 467203207}
     - target: {fileID: 6030781498855306091, guid: cc4ce8dc46f0a6f468ed57c83f44d356, type: 3}
       propertyPath: coinCounter
       value: 

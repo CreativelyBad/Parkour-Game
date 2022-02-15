@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public int levelsUnlocked;
     private int totalLevels;
     public TextMeshProUGUI levelsCount;
+    public GameObject resetButton;
 
     private void Awake()
     {
@@ -27,6 +28,15 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < levelsUnlocked; i++)
         {
             levelButtons[i].interactable = true;
+        }
+
+        if (levelsUnlocked == 10)
+        {
+            resetButton.SetActive(true);
+        }
+        else
+        {
+            resetButton.SetActive(false);
         }
     }
 }
