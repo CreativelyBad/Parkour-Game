@@ -1,6 +1,7 @@
 Version 0.4.2 Update
 
 Changes & Additions:
-- Reset button appears when all 10 levels have been completed
+- Reset lets you reset levels completed, time, and coins
 - In game timer for speed running
 - Time spent in game is shown in menu and on completion screen
+- F1 to hide/unhide HUD
