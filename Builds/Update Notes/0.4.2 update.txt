@@ -5,3 +5,4 @@ Changes & Additions:
 - In game timer for speed running
 - Time spent in game is shown in menu and on completion screen
 - F1 to hide/unhide HUD
+- Button selection sound removed
