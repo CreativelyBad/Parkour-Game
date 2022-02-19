@@ -74,4 +74,14 @@ public class MenuButtons : MonoBehaviour
     {
         resetCanvas.SetActive(false);
     }
+
+    public void OnSwitchRight(GameObject levelButtons)
+    {
+        levelButtons.transform.position -= new Vector3(1920, 0, 0);
+    }
+    
+    public void OnSwitchLeft(GameObject levelButtons)
+    {
+        levelButtons.transform.position += new Vector3(1920, 0, 0);
+    }
 }

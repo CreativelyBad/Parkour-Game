@@ -100,13 +100,14 @@ public class PlayerController : MonoBehaviour
             {
                 int globalCoinTotal = PlayerPrefs.GetInt("CoinTotal");
                 PlayerPrefs.SetInt("CoinTotal", globalCoinTotal += (int)totalCoins);
-                PlayerPrefs.Save();
 
-                LevelComplete();
                 sfxManager.audioSource.PlayOneShot(sfxManager.portalCip);
 
                 TimerController.instance.EndTimer();
                 PlayerPrefs.SetFloat("GameTime", TimerController.instance.elapsedTime);
+                PlayerPrefs.Save();
+
+                LevelComplete();
             }
         }
 
@@ -169,6 +170,9 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        PlayerPrefs.SetFloat("GameTime", TimerController.instance.elapsedTime);
+        PlayerPrefs.Save();
+
         if (checkpointActviated)
         {
             transform.position = checkpointLocation;

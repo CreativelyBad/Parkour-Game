@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 {
     public Button[] levelButtons;
     public int levelsUnlocked;
-    public int totalLevels;
+    private int totalLevels;
     public TextMeshProUGUI levelsCount;
 
     private void Awake()

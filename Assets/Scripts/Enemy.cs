@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
         timeBtwShots = startTimeBtwShots;
         enemyHealth = maxEnemyHealth;
         isInFrame = false;
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()

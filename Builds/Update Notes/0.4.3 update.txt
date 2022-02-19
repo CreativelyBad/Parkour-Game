@@ -1,0 +1,7 @@
+Version 0.4.3 Update
+
+Changes & Additions:
+- New enemy art
+- 3 different types of enemies (common, rifle, shotgun)
+- Music in menu screen
+- Ability to switch between level screens
