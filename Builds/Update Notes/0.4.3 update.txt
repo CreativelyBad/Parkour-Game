@@ -2,6 +2,12 @@ Version 0.4.3 Update
 
 Changes & Additions:
 - New enemy art
-- 3 different types of enemies (common, rifle, shotgun)
-- Music in menu screen
+- Three different types of enemies (common, rifle, shotgun)
+- Two songs added that can be heard in the menu screen
+- Menu screen music will randomly choose between the two songs currently in the game
 - Ability to switch between level screens
+- Vignette added in menu screen
+
+Notes:
+- Shotgun enemy might not work perfectly still
+- Thanks to Smocc for the music and new enemies!
