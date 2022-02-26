@@ -1,0 +1,6 @@
+Version 0.4.4 Update
+
+Changes & Additions:
+- Added upgrades screen
+- Added credits screen
+- Main menu screen animations added

@@ -19,6 +19,16 @@ public class MenuButtons : MonoBehaviour
         optionsScreen.enabled = true;
     }
 
+    public void OnUpgrades(Canvas upgradesScreen)
+    {
+        upgradesScreen.enabled = true;
+    }
+
+    public void OnCredits(Canvas creditsScreen)
+    {
+        creditsScreen.enabled = true;
+    }
+
     public void OnQuit()
     {
         Application.Quit();
@@ -83,5 +93,11 @@ public class MenuButtons : MonoBehaviour
     public void OnSwitchLeft(GameObject levelButtons)
     {
         levelButtons.transform.position += new Vector3(1920, 0, 0);
+    }
+
+    public void OnOpenLink(string link)
+    {
+        Application.OpenURL(link);
+        Debug.Log("Link Opened: " + link);
     }
 }
