@@ -52,6 +52,7 @@ public class MenuButtons : MonoBehaviour
     public void SetIsPaused(GameObject playerController)
     {
         playerController.GetComponent<PlayerController>().isPaused = false;
+        TimerController.instance.BeginTimer();
     }
 
     public void OnReturn(string menu)

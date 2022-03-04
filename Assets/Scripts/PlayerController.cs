@@ -267,6 +267,8 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isMoving", false);
 
                 TimerController.instance.EndTimer();
+
+                Debug.Log("Paused");
             }
             else
             {
@@ -276,6 +278,8 @@ public class PlayerController : MonoBehaviour
                 isPaused = false;
 
                 TimerController.instance.BeginTimer();
+
+                Debug.Log("Unpaused");
             }
         }
     }
@@ -291,7 +295,7 @@ public class PlayerController : MonoBehaviour
     private void LevelComplete()
     {
         // load next level
-        if (SceneManager.GetActiveScene().buildIndex + 1 < 12)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.GetActiveScene().buildIndex)
         {
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
 
@@ -299,7 +303,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(LoadLevel(12));
+            StartCoroutine(LoadLevel(SceneManager.GetSceneByName("GameCompletedScreen").buildIndex));
         }
     }
 

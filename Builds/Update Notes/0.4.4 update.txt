@@ -1,6 +1,11 @@
 Version 0.4.4 Update
 
+Bug Fixes:
+- Player no longer gets stuck on walls
+- Timer now unpauses when you click the resume button
+
 Changes & Additions:
 - Added upgrades screen
 - Added credits screen
-- Main menu screen animations added
+- Menu screen animations added
+- Shift time to drop down platformers lowered to 0.1 seconds

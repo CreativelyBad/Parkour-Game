@@ -6,6 +6,7 @@ public class VerticalPlatform : MonoBehaviour
 {
     public PlatformEffector2D effector;
     private float waitTime;
+    private float startWaitTime = 0.1f;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class VerticalPlatform : MonoBehaviour
         // reset wait time and rotaional offset when left shift is let go
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            waitTime = 0.25f;
+            waitTime = startWaitTime;
             effector.rotationalOffset = 0f;
         }
 
@@ -27,7 +28,7 @@ public class VerticalPlatform : MonoBehaviour
             if (waitTime <= 0)
             {
                 effector.rotationalOffset = 180f;
-                waitTime = 0.5f;
+                waitTime = startWaitTime;
             }
             else
             {

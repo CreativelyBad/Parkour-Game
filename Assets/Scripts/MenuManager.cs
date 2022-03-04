@@ -25,6 +25,6 @@ public class MenuManager : MonoBehaviour
 
         musicSource.PlayOneShot(songs[songSelected]);
 
-        Debug.Log(songSelected);
+        Debug.Log(songs[songSelected]);
     }
 }
