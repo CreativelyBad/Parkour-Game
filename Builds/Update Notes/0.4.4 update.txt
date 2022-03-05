@@ -6,6 +6,8 @@ Bug Fixes:
 
 Changes & Additions:
 - Added upgrades screen
+- 3 upgrade buttons on upgrade screen (not functional yet)
 - Added credits screen
 - Menu screen animations added
 - Shift time to drop down platformers lowered to 0.1 seconds
+- Custom cursor for menus
