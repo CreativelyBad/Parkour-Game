@@ -295,14 +295,14 @@ public class PlayerController : MonoBehaviour
     private void LevelComplete()
     {
         // load next level
-        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.GetActiveScene().buildIndex)
+        if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.GetActiveScene().buildIndex)
         {
+            Debug.Log("SDAHJKHK");
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
+            Debug.Log("hjkhkjhk");
             StartCoroutine(LoadLevel(SceneManager.GetSceneByName("GameCompletedScreen").buildIndex));
         }
     }
@@ -395,37 +395,4 @@ public class PlayerController : MonoBehaviour
             eHolder.SetActive(false);
         }
     }
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Platform" || collision.tag == "Ground")
-    //    {
-    //        doubleJumpAmount--;
-    //    }
-    //}
-
-    //private bool IsGrounded()
-    //{
-    //    float extraHeightTest = 0.1f;
-    //    Color rayColor;
-
-    //    // cast ray to find if player is on ground
-    //    RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down, 
-    //        boxCollider.bounds.extents.y + extraHeightTest, platformLayerMask);
-
-    //    // set colour based on if player is grounded or not
-    //    if (raycastHit.collider != null)
-    //    {
-    //        rayColor = Color.green;
-    //    }
-    //    else
-    //    {
-    //        rayColor = Color.red;
-    //    }
-
-    //    // draw visible ray
-    //    Debug.DrawRay(boxCollider.bounds.center, Vector2.down * (boxCollider.bounds.extents.y + extraHeightTest));
-
-    //    return raycastHit.collider != null;
-    //}
 }
