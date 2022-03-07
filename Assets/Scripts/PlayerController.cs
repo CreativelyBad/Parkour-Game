@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public GameObject eHolder;
     public Animator sceneTransitionAnim;
     public SFXManager sfxManager;
+    public GameObject canister;
+    public GameObject throwSpawn;
 
     [Header("Values")]
     public float speed = 5f;
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
             if (grapplingHook.GetComponent<GrapplingHook>().isGrappling == false)
             {
                 Shoot();
+                Throw();
             }
 
             if (isComplete && Input.GetKeyDown(KeyCode.E))
@@ -133,6 +136,25 @@ public class PlayerController : MonoBehaviour
             else
             {
                 eHolder.transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+    }
+
+    private void Throw()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (transform.localScale.x == 1)
+            {
+                Debug.Log("0");
+                canister.transform.localScale = new Vector3(1, 1, 1);
+                Instantiate(canister, throwSpawn.transform.position, Quaternion.Euler(0, 0, 30));
+            }
+            else
+            {
+                Debug.Log("1");
+                canister.transform.localScale = new Vector3(1, -1, 1);
+                Instantiate(canister, throwSpawn.transform.position, Quaternion.Euler(0, 0, 150));
             }
         }
     }

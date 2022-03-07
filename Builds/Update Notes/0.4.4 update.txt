@@ -11,3 +11,5 @@ Changes & Additions:
 - Menu screen animations added
 - Shift time to drop down platformers lowered to 0.1 seconds
 - Custom cursor for menus
+- Throwable explosives
+- C to throw explosive

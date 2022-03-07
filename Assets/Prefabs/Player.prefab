@@ -382,6 +382,7 @@ Transform:
   - {fileID: 795853592883545158}
   - {fileID: 2353257041690350302}
   - {fileID: 6835188163510931616}
+  - {fileID: 5936815414305834036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -461,6 +462,8 @@ MonoBehaviour:
   eHolder: {fileID: 1564377122324907485}
   sceneTransitionAnim: {fileID: 4375871349399659230, guid: 84fcc0f18998738429bc1861dc7344b1, type: 3}
   sfxManager: {fileID: 1769085302067063295}
+  canister: {fileID: 8002074196925911766, guid: 825c4800b00c81e4dba8a2abdb1f234f, type: 3}
+  throwSpawn: {fileID: 6356389151877234087}
   speed: 5
   jumpVelocity: 10
   totalCoins: 0
@@ -1016,6 +1019,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6030781498788500955}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6356389151877234087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5936815414305834036}
+  m_Layer: 0
+  m_Name: ThrowSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5936815414305834036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356389151877234087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.278, y: -0.139, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6030781498855306094}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6916295869942845236
 GameObject:
