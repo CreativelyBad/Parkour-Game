@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -284,7 +284,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2740147}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 151277455}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: OnThrowUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &2740150
 Animator:
   serializedVersion: 3
@@ -3559,8 +3571,9 @@ GameObject:
   m_Component:
   - component: {fileID: 151277453}
   - component: {fileID: 151277454}
+  - component: {fileID: 151277455}
   m_Layer: 5
-  m_Name: Buttons
+  m_Name: UpgradeButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3607,6 +3620,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &151277455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151277452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38ace9beacf741488d0f41cbab89b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwableUpgrade: {fileID: 2740145}
+  healthUpgrade: {fileID: 1120268197}
+  sheildUpgrade: {fileID: 2016152294}
+  coinDisplay: {fileID: 29411905}
+  coinDisplay2: {fileID: 1034608860}
 --- !u!1 &162966599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4660,6 +4690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinCount: {fileID: 1034608860}
+  coinCount2: {fileID: 29411905}
   musicSource: {fileID: 295268052}
   songs:
   - {fileID: 8300000, guid: b29eed8ff55b12845b47b81b24f1b188, type: 3}
@@ -14200,7 +14231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -15525,7 +15556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3280}
+  m_AnchoredPosition: {x: 0, y: 342400}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1242002056
@@ -23363,7 +23394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -24480,7 +24511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v0.4.4
+  m_text: v0.5.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f3d956c0b5c36c4aae622dc19815045, type: 2}
   m_sharedMaterial: {fileID: -3033801616513121652, guid: 3f3d956c0b5c36c4aae622dc19815045, type: 2}

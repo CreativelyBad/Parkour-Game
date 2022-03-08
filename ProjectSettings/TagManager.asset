@@ -18,6 +18,7 @@ TagManager:
   - SettingZone
   - NoInteract
   - Checkpoint
+  - Canister
   layers:
   - Default
   - TransparentFX

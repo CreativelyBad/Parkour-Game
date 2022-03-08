@@ -7,6 +7,7 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
     public TMP_Text coinCount;
+    public TMP_Text coinCount2;
 
     public AudioSource musicSource;
     public AudioClip[] songs;
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
 
         UnityEngine.Cursor.visible = true;
         coinCount.text = PlayerPrefs.GetInt("CoinTotal").ToString();
+        coinCount2.text = PlayerPrefs.GetInt("CoinTotal").ToString();
     }
 
     private void ChooseMusic()

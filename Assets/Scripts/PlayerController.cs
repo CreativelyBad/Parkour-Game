@@ -52,6 +52,19 @@ public class PlayerController : MonoBehaviour
     private bool checkpointActviated;
     private Vector3 checkpointLocation;
 
+    // throwable
+    private float lastThrow = 0;
+    private float throwCoolDown = 2;
+    private bool canThrow;
+
+    bool IntToBool(int input)
+    {
+        if (input == 1)
+            return true;
+        else
+            return false;
+    }
+
     void Start()
     {
         // get components needed
@@ -79,6 +92,8 @@ public class PlayerController : MonoBehaviour
         checkpointLocation = Vector3.zero;
 
         TimerController.instance.BeginTimer();
+
+        canThrow = IntToBool(PlayerPrefs.GetInt("CanThrow", 0));
     }
 
     void Update()
@@ -96,7 +111,11 @@ public class PlayerController : MonoBehaviour
             if (grapplingHook.GetComponent<GrapplingHook>().isGrappling == false)
             {
                 Shoot();
-                Throw();
+
+                if (canThrow)
+                {
+                    Throw();
+                }
             }
 
             if (isComplete && Input.GetKeyDown(KeyCode.E))
@@ -142,8 +161,10 @@ public class PlayerController : MonoBehaviour
 
     private void Throw()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && Time.time >= lastThrow + throwCoolDown)
         {
+            lastThrow = Time.time;
+
             if (transform.localScale.x == 1)
             {
                 Debug.Log("0");

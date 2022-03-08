@@ -12,4 +12,10 @@ Changes & Additions:
 - Shift time to drop down platformers lowered to 0.1 seconds
 - Custom cursor for menus
 - Throwable explosives
+
+Throwable Explosives Notes:
 - C to throw explosive
+- 2 second cool down between throws
+- Throwable force is 7
+- If shot it explodes instantly
+- Can be unlocked for 500 coins

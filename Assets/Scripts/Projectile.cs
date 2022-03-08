@@ -31,5 +31,10 @@ public class Projectile : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
+
+        if (collision.tag == "Canister")
+        {
+            collision.GetComponent<ThrowableExplosive>().Explode();
+        }
     }
 }

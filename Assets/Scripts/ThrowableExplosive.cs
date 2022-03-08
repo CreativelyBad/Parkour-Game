@@ -27,13 +27,18 @@ public class ThrowableExplosive : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(Explode());
+        StartCoroutine(ExplodeWait());
     }
 
-    IEnumerator Explode()
+    IEnumerator ExplodeWait()
     {
         yield return new WaitForSeconds(3);
 
+        Explode();
+    }
+
+    public void Explode()
+    {
         circleCollider.enabled = true;
 
         Destroy(gameObject);

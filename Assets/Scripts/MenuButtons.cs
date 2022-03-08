@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -77,6 +78,7 @@ public class MenuButtons : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         PlayerPrefs.SetInt("LevelsUnlocked", 1);
         PlayerPrefs.SetInt("CoinTotal", 0);
+        PlayerPrefs.SetInt("CanThrow", 0);
         PlayerPrefs.SetFloat("GameTime", 0f);
         PlayerPrefs.Save();
     }
