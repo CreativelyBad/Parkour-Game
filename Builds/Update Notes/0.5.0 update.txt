@@ -1,8 +1,9 @@
-Version 0.4.4 Update
+Version 0.5.0 Update
 
 Bug Fixes:
 - Player no longer gets stuck on walls
 - Timer now unpauses when you click the resume button
+- Player can't jump up walls infinitely
 
 Changes & Additions:
 - Added upgrades screen
@@ -12,6 +13,9 @@ Changes & Additions:
 - Shift time to drop down platformers lowered to 0.1 seconds
 - Custom cursor for menus
 - Throwable explosives
+- Coin count shows total coins
+- Health carries over between levels
+- **Enemy death animation
 
 Throwable Explosives Notes:
 - C to throw explosive

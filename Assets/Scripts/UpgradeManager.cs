@@ -30,11 +30,13 @@ public class UpgradeManager : MonoBehaviour
         if (coinCount >= throwableCost)
         {
             coinCount -= throwableCost;
+            PlayerPrefs.SetInt("CoinTotal", coinCount);
             PlayerPrefs.SetInt("CanThrow", 1);
             throwableUpgrade.GetComponent<Button>().interactable = false;
             PlayerPrefs.SetInt("CoinTotal", coinCount);
             coinDisplay.text = coinCount.ToString();
             coinDisplay2.text = coinCount.ToString();
+            PlayerPrefs.Save();
         }
     }
 

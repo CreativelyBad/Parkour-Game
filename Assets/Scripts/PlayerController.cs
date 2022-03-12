@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [Header("Values")]
     public float speed = 5f;
     public float jumpVelocity = 12f;
-    public float totalCoins = 0f;
+    public int totalCoins = 0;
 
     [Header("Other")]
     [SerializeField] private LayerMask platformLayerMask;
@@ -74,7 +74,8 @@ public class PlayerController : MonoBehaviour
         // call SetXScale to set the direction player is facing
         SetXScale();
 
-        // set coin counter to 0
+        // set coin counter to total coins
+        totalCoins = PlayerPrefs.GetInt("CoinTotal", 0);
         coinCounter.SetText(totalCoins.ToString());
 
         // set game to not paused on start
@@ -94,6 +95,8 @@ public class PlayerController : MonoBehaviour
         TimerController.instance.BeginTimer();
 
         canThrow = IntToBool(PlayerPrefs.GetInt("CanThrow", 0));
+
+        health = PlayerPrefs.GetInt("Health", health);
     }
 
     void Update()
@@ -120,8 +123,7 @@ public class PlayerController : MonoBehaviour
 
             if (isComplete && Input.GetKeyDown(KeyCode.E))
             {
-                int globalCoinTotal = PlayerPrefs.GetInt("CoinTotal");
-                PlayerPrefs.SetInt("CoinTotal", globalCoinTotal += (int)totalCoins);
+                PlayerPrefs.SetInt("CoinTotal", totalCoins);
 
                 sfxManager.audioSource.PlayOneShot(sfxManager.portalCip);
 
@@ -186,6 +188,7 @@ public class PlayerController : MonoBehaviour
         if (health > numOfHearts)
         {
             health = numOfHearts;
+            PlayerPrefs.SetInt("Health", health);
         }
 
         // set which hearts appear
@@ -213,6 +216,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        PlayerPrefs.SetInt("Health", maxHealth);
         PlayerPrefs.SetFloat("GameTime", TimerController.instance.elapsedTime);
         PlayerPrefs.Save();
 
@@ -365,6 +369,8 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "EnemyProjectile")
         {
             health--;
+            PlayerPrefs.SetInt("Health", health);
+            PlayerPrefs.Save();
             sfxManager.audioSource.PlayOneShot(sfxManager.damageClip);
         }
         
@@ -372,6 +378,8 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Heart" && health < numOfHearts)
         {
             health++;
+            PlayerPrefs.SetInt("Health", health);
+            PlayerPrefs.Save();
             sfxManager.audioSource.PlayOneShot(sfxManager.heartPickupClip);
             Destroy(collision.gameObject);
         }
@@ -380,6 +388,8 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Coin")
         {
             totalCoins += 5;
+            PlayerPrefs.SetInt("CoinTotal", totalCoins);
+            PlayerPrefs.Save();
             coinCounter.SetText(totalCoins.ToString());
             sfxManager.audioSource.PlayOneShot(sfxManager.coinPickupClip);
             Destroy(collision.gameObject);

@@ -7,15 +7,19 @@ public class ThrowableExplosive : MonoBehaviour
     public Sprite[] canisters;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    private CircleCollider2D circleCollider;
+    public CircleCollider2D circleCollider;
+    private CapsuleCollider2D capsuleCollider;
     public float force;
     private GameObject player;
+    private GameObject enemy;
+    public GameObject explosion;
+    private Animator anim;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        circleCollider = GetComponent<CircleCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         circleCollider.enabled = false;
 
         rb = GetComponent<Rigidbody2D>();
@@ -23,10 +27,14 @@ public class ThrowableExplosive : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = canisters[Random.Range(0, 4)];
+
+        anim = explosion.GetComponent<Animator>();
     }
 
     private void Update()
     {
+        explosion.transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z);
+
         StartCoroutine(ExplodeWait());
     }
 
@@ -39,16 +47,18 @@ public class ThrowableExplosive : MonoBehaviour
 
     public void Explode()
     {
-        circleCollider.enabled = true;
-
-        Destroy(gameObject);
+        StartCoroutine(ExplodeAnimate());
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    IEnumerator ExplodeAnimate()
     {
-        if (collision.tag == "Enemy")
-        {
-            Destroy(collision.gameObject);
-        }
+        GetComponent<SpriteRenderer>().enabled = false;
+        anim.SetTrigger("Explode");
+
+        circleCollider.enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(gameObject, 0.1f);
     }
 }

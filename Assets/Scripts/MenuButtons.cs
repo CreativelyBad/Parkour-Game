@@ -80,6 +80,7 @@ public class MenuButtons : MonoBehaviour
         PlayerPrefs.SetInt("CoinTotal", 0);
         PlayerPrefs.SetInt("CanThrow", 0);
         PlayerPrefs.SetFloat("GameTime", 0f);
+        PlayerPrefs.SetInt("Health", 5);
         PlayerPrefs.Save();
     }
 

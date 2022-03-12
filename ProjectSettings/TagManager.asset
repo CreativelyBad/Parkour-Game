@@ -19,6 +19,7 @@ TagManager:
   - NoInteract
   - Checkpoint
   - Canister
+  - CanisterColl
   layers:
   - Default
   - TransparentFX

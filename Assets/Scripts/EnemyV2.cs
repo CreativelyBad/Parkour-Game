@@ -18,6 +18,7 @@ public class EnemyV2 : MonoBehaviour
     public GameObject player;
 
     private bool isInFrame;
+    private Animator anim;
 
     private void Start()
     {
@@ -27,6 +28,8 @@ public class EnemyV2 : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         gun.GetComponent<EnemyWeapon>().SetTBS(fireRate);
+
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -44,8 +47,17 @@ public class EnemyV2 : MonoBehaviour
         // check if enemy is dead
         if (enemyHealth <= 0f)
         {
-            GameObject.Destroy(gameObject);
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die()
+    {
+        anim.SetTrigger("Die");
+
+        yield return new WaitForSeconds(1);
+
+        GameObject.Destroy(gameObject);
     }
 
     private void Aim()
@@ -87,6 +99,11 @@ public class EnemyV2 : MonoBehaviour
         if (collision.tag == "MainCamera")
         {
             isInFrame = true;
+        }
+
+        if (collision.tag == "CanisterColl")
+        {
+            Destroy(gameObject);
         }
     }
 }
