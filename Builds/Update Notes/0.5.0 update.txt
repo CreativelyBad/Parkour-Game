@@ -7,7 +7,7 @@ Bug Fixes:
 
 Changes & Additions:
 - Added upgrades screen
-- 3 upgrade buttons on upgrade screen (not functional yet)
+- 3 upgrade buttons on upgrade screen
 - Added credits screen
 - Menu screen animations added
 - Shift time to drop down platformers lowered to 0.1 seconds
@@ -15,10 +15,20 @@ Changes & Additions:
 - Throwable explosives
 - Coin count shows total coins
 - Health carries over between levels
+- Health upgrade that gives 2 extra hearts for 100 coins
+- Sheild upgrade that allows you to block enemy projectiles
 
 Throwable Explosives Notes:
-- C to throw explosive
-- 2 second cool down between throws
+- Q to throw explosive
+- 2 second cooldown between throws
 - Throwable force is 7
 - If shot it explodes instantly
-- Can be unlocked for 500 coins
+- Can be unlocked for 300 coins
+
+Shield Notes:
+- Player can't shoot when shield is up
+- Cost is 500 coins
+- S to use shield
+- Can only being used for 3 seconds at a time
+- 3 second cooldown between usesc
+- Slider that shows cooldown and recharge

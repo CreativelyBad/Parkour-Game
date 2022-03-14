@@ -6,6 +6,7 @@ public class PickupCollisionIgnore : MonoBehaviour
 {
     public GameObject player;
     private GameObject groundCheck;
+    private GameObject shield;
 
     private void Start()
     {

@@ -481,6 +481,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fullHeart: {fileID: 4226124693343336641, guid: 4ad2dbb24cb74304ca699cb44c5a92d8, type: 3}
+  fullExtraHeart: {fileID: -7663799747323745828, guid: 4ad2dbb24cb74304ca699cb44c5a92d8, type: 3}
   emptyHeart: {fileID: 3484795614707425722, guid: 4ad2dbb24cb74304ca699cb44c5a92d8, type: 3}
 --- !u!50 &6030781498855306092
 Rigidbody2D:

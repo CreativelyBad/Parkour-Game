@@ -8,11 +8,11 @@ public class UpgradeManager : MonoBehaviour
 {
     public GameObject throwableUpgrade;
     public GameObject healthUpgrade;
-    public GameObject sheildUpgrade;
+    public GameObject shieldUpgrade;
 
-    private int throwableCost = 500;
-    private int healthCost = 300;
-    private int sheildCost = 800;
+    private int throwableCost = 300;
+    private int healthCost = 100;
+    private int shieldCost = 500;
 
     private int coinCount;
 
@@ -23,6 +23,8 @@ public class UpgradeManager : MonoBehaviour
     {
         throwableUpgrade.GetComponent<Button>().interactable = !IntToBool(PlayerPrefs.GetInt("CanThrow", 0));
         healthUpgrade.GetComponent<Button>().interactable = !IntToBool(PlayerPrefs.GetInt("HasHealthUpgrade", 0));
+        shieldUpgrade.GetComponent<Button>().interactable = !IntToBool(PlayerPrefs.GetInt("CanShield", 0));
+
         coinCount = PlayerPrefs.GetInt("CoinTotal", 0);
     }
 
@@ -48,6 +50,7 @@ public class UpgradeManager : MonoBehaviour
             coinCount -= healthCost;
             PlayerPrefs.SetInt("CoinTotal", coinCount);
             PlayerPrefs.SetInt("HasHealthUpgrade", 1);
+            PlayerPrefs.SetInt("Health", 7);
             coinDisplay.text = coinCount.ToString();
             coinDisplay2.text = coinCount.ToString();
             healthUpgrade.GetComponent<Button>().interactable = false;
@@ -57,7 +60,16 @@ public class UpgradeManager : MonoBehaviour
 
     public void OnSheildUpgrade()
     {
-        // code
+        if (coinCount >= shieldCost)
+        {
+            coinCount -= shieldCost;
+            PlayerPrefs.SetInt("CoinTotal", coinCount);
+            PlayerPrefs.SetInt("CanShield", 1);
+            coinDisplay.text = coinCount.ToString();
+            coinDisplay2.text = coinCount.ToString();
+            shieldUpgrade.GetComponent<Button>().interactable = false;
+            PlayerPrefs.Save();
+        }
     }
 
     bool IntToBool(int input)

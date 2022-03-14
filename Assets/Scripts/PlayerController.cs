@@ -38,8 +38,9 @@ public class PlayerController : MonoBehaviour
     public int health;
     public int maxHealth;
     public int numOfHearts;
-    public Image[] hearts;
+    public List<Image> hearts;
     public Sprite fullHeart;
+    public Sprite fullExtraHeart;
     public Sprite emptyHeart;
 
     // private variables
@@ -59,7 +60,19 @@ public class PlayerController : MonoBehaviour
 
     // health upgrade
     private GameObject heartsHolder;
-    private GameObject extraHearts;
+    private GameObject extraHeartsHolder;
+
+    // shield upgrade
+    private bool canShield;
+    private GameObject shield;
+    private Animator shieldAnimator;
+    private float shieldUpTime = 0;
+    private float shieldMaxTime = 3;
+    private float shieldCooldown = 3;
+    private float shieldLastUp = 0;
+    private bool canRelease = false;
+    private Slider shieldCooldownSlider;
+    private GameObject shieldCooldownObj;
 
     bool IntToBool(int input)
     {
@@ -100,21 +113,42 @@ public class PlayerController : MonoBehaviour
 
         canThrow = IntToBool(PlayerPrefs.GetInt("CanThrow", 0));
 
-        health = PlayerPrefs.GetInt("Health", health);
-
+        // shield upgrade
+        shield = GameObject.Find("ShieldHolder");
+        shield.SetActive(false);
+        shieldAnimator = shield.GetComponentInChildren<Animator>();
+        canShield = IntToBool(PlayerPrefs.GetInt("CanShield", 0));
+        shieldCooldownSlider = GameObject.Find("ShieldCooldown").GetComponent<Slider>();
+        shieldCooldownObj = GameObject.Find("ShieldCooldown");
+        if (canShield)
+        {
+            shieldCooldownObj.SetActive(true);
+        }
+        else
+        {
+            shieldCooldownObj.SetActive(false);
+        }
 
         heartsHolder = GameObject.FindGameObjectWithTag("HeartsHolder");
-        extraHearts = GameObject.FindGameObjectWithTag("ExtraHeartsHolder");
+        extraHeartsHolder = GameObject.FindGameObjectWithTag("ExtraHeartsHolder");
         if (IntToBool(PlayerPrefs.GetInt("HasHealthUpgrade", 0)))
         {
+            // if has health upgrade
             heartsHolder.transform.localPosition = new Vector3(-80, 540, 0);
-            extraHearts.SetActive(true);
+            extraHeartsHolder.SetActive(true);
+            hearts.Add(GameObject.Find("ExtraHeart1").GetComponent<Image>());
+            hearts.Add(GameObject.Find("ExtraHeart2").GetComponent<Image>());
+            maxHealth = 7;
+            health = maxHealth;
+            numOfHearts = maxHealth;
         }
         else
         {
             heartsHolder.transform.localPosition = new Vector3(0, 540, 0);
-            extraHearts.SetActive(false);
+            extraHeartsHolder.SetActive(false);
         }
+
+        health = PlayerPrefs.GetInt("Health", health);
     }
 
     void Update()
@@ -136,6 +170,11 @@ public class PlayerController : MonoBehaviour
                 if (canThrow)
                 {
                     Throw();
+                }
+
+                if (canShield)
+                {
+                    Shield();
                 }
             }
 
@@ -179,9 +218,51 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Shield()
+    {
+        if (Time.time - shieldLastUp >= shieldCooldown )
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                shieldUpTime = Time.time;
+                shield.SetActive(true);
+                canRelease = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.S) && canRelease || Time.time - shieldUpTime > shieldMaxTime && canRelease)
+            {
+                shieldLastUp = Time.time;
+                canRelease = false;
+                StartCoroutine(ShieldOffAnimate());
+            }
+        }
+
+        if (Time.time - shieldLastUp <= shieldCooldown)
+        {
+            shieldCooldownSlider.value = Time.time - shieldLastUp;
+        }
+        else if (Time.time - shieldUpTime <= shieldMaxTime)
+        {
+            shieldCooldownSlider.value = 3 - (Time.time - shieldUpTime);
+        }
+        else
+        {
+            shieldCooldownSlider.value = 3;
+        }
+    }
+
+    IEnumerator ShieldOffAnimate()
+    {
+        shieldAnimator.SetTrigger("Off");
+
+        yield return new WaitForSeconds(0.2f);
+
+        shield.SetActive(false);
+    }
+
     private void Throw()
     {
-        if (Input.GetKeyDown(KeyCode.C) && Time.time >= lastThrow + throwCoolDown)
+        if (Input.GetKeyDown(KeyCode.Q) && Time.time >= lastThrow + throwCoolDown)
         {
             lastThrow = Time.time;
 
@@ -210,11 +291,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // set which hearts appear
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < hearts.Count; i++)
         {
             if (i < health)
             {
-                hearts[i].sprite = fullHeart;
+                if (i < 5)
+                {
+                    hearts[i].sprite = fullHeart;
+                }
+                else
+                {
+                    hearts[i].sprite = fullExtraHeart;
+                }
             }
             else
             {
@@ -362,12 +450,10 @@ public class PlayerController : MonoBehaviour
         // load next level
         if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.GetActiveScene().buildIndex)
         {
-            Debug.Log("SDAHJKHK");
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
         else
         {
-            Debug.Log("hjkhkjhk");
             StartCoroutine(LoadLevel(SceneManager.GetSceneByName("GameCompletedScreen").buildIndex));
         }
     }
