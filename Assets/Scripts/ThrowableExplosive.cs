@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class ThrowableExplosive : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class ThrowableExplosive : MonoBehaviour
     private CapsuleCollider2D capsuleCollider;
     public float force;
     private GameObject player;
-    private GameObject enemy;
     public GameObject explosion;
     private Animator anim;
+    public Color[] lightColours;
+    public GameObject cansiterLight;
+    private int selection;
 
     void Start()
     {
@@ -26,7 +29,9 @@ public class ThrowableExplosive : MonoBehaviour
         rb.velocity = transform.TransformDirection(Vector2.right * force);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = canisters[Random.Range(0, 4)];
+        selection = Random.Range(0, 4);
+        spriteRenderer.sprite = canisters[selection];
+        cansiterLight.GetComponent<Light2D>().color = lightColours[selection];
 
         anim = explosion.GetComponent<Animator>();
     }
@@ -34,6 +39,15 @@ public class ThrowableExplosive : MonoBehaviour
     private void Update()
     {
         explosion.transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z);
+
+        if (player.transform.localScale.x == 1)
+        {
+            explosion.GetComponent<SpriteRenderer>().flipY = false;
+        }
+        else
+        {
+            explosion.GetComponent<SpriteRenderer>().flipY = true;
+        }
 
         StartCoroutine(ExplodeWait());
     }
@@ -52,6 +66,7 @@ public class ThrowableExplosive : MonoBehaviour
 
     IEnumerator ExplodeAnimate()
     {
+        cansiterLight.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = false;
         anim.SetTrigger("Explode");
 

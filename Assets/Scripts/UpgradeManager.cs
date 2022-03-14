@@ -22,6 +22,7 @@ public class UpgradeManager : MonoBehaviour
     private void Start()
     {
         throwableUpgrade.GetComponent<Button>().interactable = !IntToBool(PlayerPrefs.GetInt("CanThrow", 0));
+        healthUpgrade.GetComponent<Button>().interactable = !IntToBool(PlayerPrefs.GetInt("HasHealthUpgrade", 0));
         coinCount = PlayerPrefs.GetInt("CoinTotal", 0);
     }
 
@@ -40,12 +41,21 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    private void OnHealthUpgrade()
+    public void OnHealthUpgrade()
     {
-        // code
+        if (coinCount >= healthCost)
+        {
+            coinCount -= healthCost;
+            PlayerPrefs.SetInt("CoinTotal", coinCount);
+            PlayerPrefs.SetInt("HasHealthUpgrade", 1);
+            coinDisplay.text = coinCount.ToString();
+            coinDisplay2.text = coinCount.ToString();
+            healthUpgrade.GetComponent<Button>().interactable = false;
+            PlayerPrefs.Save();
+        }
     }
 
-    private void OnSheildUpgrade()
+    public void OnSheildUpgrade()
     {
         // code
     }

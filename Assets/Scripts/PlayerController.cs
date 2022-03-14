@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
     private float throwCoolDown = 2;
     private bool canThrow;
 
+    // health upgrade
+    private GameObject heartsHolder;
+    private GameObject extraHearts;
+
     bool IntToBool(int input)
     {
         if (input == 1)
@@ -97,6 +101,20 @@ public class PlayerController : MonoBehaviour
         canThrow = IntToBool(PlayerPrefs.GetInt("CanThrow", 0));
 
         health = PlayerPrefs.GetInt("Health", health);
+
+
+        heartsHolder = GameObject.FindGameObjectWithTag("HeartsHolder");
+        extraHearts = GameObject.FindGameObjectWithTag("ExtraHeartsHolder");
+        if (IntToBool(PlayerPrefs.GetInt("HasHealthUpgrade", 0)))
+        {
+            heartsHolder.transform.localPosition = new Vector3(-80, 540, 0);
+            extraHearts.SetActive(true);
+        }
+        else
+        {
+            heartsHolder.transform.localPosition = new Vector3(0, 540, 0);
+            extraHearts.SetActive(false);
+        }
     }
 
     void Update()

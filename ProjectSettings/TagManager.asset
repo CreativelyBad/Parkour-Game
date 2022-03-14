@@ -20,6 +20,9 @@ TagManager:
   - Checkpoint
   - Canister
   - CanisterColl
+  - HUD
+  - HeartsHolder
+  - ExtraHeartsHolder
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,6 @@ Changes & Additions:
 - Throwable explosives
 - Coin count shows total coins
 - Health carries over between levels
-- **Enemy death animation
 
 Throwable Explosives Notes:
 - C to throw explosive
