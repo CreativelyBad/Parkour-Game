@@ -8,12 +8,13 @@ Bug Fixes:
 Changes & Additions:
 - Added upgrades screen
 - 3 upgrade buttons on upgrade screen
+- Upgrade prices are displayed below buttons
 - Added credits screen
-- Menu screen animations added
+- Menu screens all have animations
 - Shift time to drop down platformers lowered to 0.1 seconds
 - Custom cursor for menus
 - Throwable explosives
-- Coin count shows total coins
+- Coin count shows total coins over all levels
 - Health carries over between levels
 - Health upgrade that gives 2 extra hearts for 100 coins
 - Sheild upgrade that allows you to block enemy projectiles
@@ -30,5 +31,5 @@ Shield Notes:
 - Cost is 500 coins
 - S to use shield
 - Can only being used for 3 seconds at a time
-- 3 second cooldown between usesc
+- 3 second cooldown between uses
 - Slider that shows cooldown and recharge
