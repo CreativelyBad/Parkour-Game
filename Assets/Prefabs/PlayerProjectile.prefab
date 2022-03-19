@@ -27,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3749047157007859147}
-  m_LocalRotation: {x: -0, y: -0, z: 0.13749136, w: 0.990503}
-  m_LocalPosition: {x: 0.3852445, y: -2.5390258, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.47514918, w: 0.8799052}
+  m_LocalPosition: {x: 4.484565, y: 4.2533846, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1395754501650872318}
@@ -138,7 +138,7 @@ MonoBehaviour:
   rb: {fileID: 2464037759417983722}
   cirleCollider: {fileID: 1701214720136776947}
   projectileSpeed: 20
-  x: -1
+  x: 1
 --- !u!1 &5617009034389454975
 GameObject:
   m_ObjectHideFlags: 0
