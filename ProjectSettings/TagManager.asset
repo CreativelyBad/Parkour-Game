@@ -23,6 +23,7 @@ TagManager:
   - HUD
   - HeartsHolder
   - ExtraHeartsHolder
+  - Music
   layers:
   - Default
   - TransparentFX

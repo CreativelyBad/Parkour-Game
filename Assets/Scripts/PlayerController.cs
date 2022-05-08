@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private bool isComplete;
     private bool isGrounded;
     private float doubleJumpAmount;
+    private GameObject musicManager;
 
     // checkpoints
     private bool checkpointActviated;
@@ -421,7 +422,7 @@ public class PlayerController : MonoBehaviour
 
                 TimerController.instance.EndTimer();
 
-                Debug.Log("Paused");
+                //Debug.Log("Paused");
             }
             else
             {
@@ -432,7 +433,7 @@ public class PlayerController : MonoBehaviour
 
                 TimerController.instance.BeginTimer();
 
-                Debug.Log("Unpaused");
+                //Debug.Log("Unpaused");
             }
         }
     }
