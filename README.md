@@ -1,4 +1,2 @@
-# Parkour-Game
-Parkour game repo
-currently in development
-all assets and files can be found here
+# Official repo of Dimensions
+# itch.io -> https://creativelybad.itch.io/dimensions
